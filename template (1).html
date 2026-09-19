@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="pageTitle">TISZA — kameralna przestrzeń masażu we Wrocławiu</title>
+  <meta name="description" content="TISZA — kameralna przestrzeń masażu we Wrocławiu. Osobiste rytuały, terapeutyczny dotyk i czas należący tylko do Ciebie.">
+  <link rel="canonical" href="https://tisza-spa.example/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TISZA — przestrzeń uważnego dotyku">
+  <meta property="og:description" content="Rytuały masażu, po których ciało przypomina sobie, jak to jest być lekkim.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:url" content="https://tisza-spa.example/">
+  <meta name="theme-color" content="#edf0e8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>try { const t=localStorage.getItem('tisha-theme'); if(t==='dark'||t==='light') document.documentElement.dataset.theme=t; } catch(e) {}</script>
+  <style>
+    /* ==========================================================
+       ТИША — liquid glass
+       Палітра: туман (#edf0e8) · шавлія (#dde5d8) · сосновий чорнил (#16241c)
+                бурштин-олія (#e8a566) · celadon (#2f8f86)
+       Шрифти: Cormorant Garamond (заголовки) + Jost (інтерфейс і текст)
+       ========================================================== */
+    :root {
+      color-scheme: light;
+      --bg: #edf0e8;
+      --bg-2: #dde5d8;
+      --text: #16241c;
+      --muted: #56645b;
+      --accent: #8f5429;
+      --glow: #e8a566;
+      --btn-bg: #16241c;
+      --btn-text: #f4f6ef;
+      --line: rgba(22, 36, 28, 0.14);
+      --field-bg: rgba(255, 255, 255, 0.55);
+      --error: #a3322a;
+      --success: #2f6a45;
+
+      --g-top: rgba(255, 255, 255, 0.62);
+      --g-bot: rgba(255, 255, 255, 0.26);
+      --g-edge: rgba(255, 255, 255, 0.95);
+      --g-edge-dim: rgba(255, 255, 255, 0.3);
+      --g-shadow: rgba(38, 64, 50, 0.3);
+
+      --orb-a: rgba(160, 202, 172, 0.6);
+      --orb-b: rgba(246, 198, 152, 0.5);
+      --orb-c: rgba(150, 210, 206, 0.5);
+
+      --font-display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+      --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+
+      --page: min(92vw, 1320px);
+      --space-4: 2rem;
+      --space-5: 3rem;
+      --space-6: 4.5rem;
+      --space-7: clamp(5.5rem, 11vw, 9.5rem);
+      --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-fast: 220ms;
+      --duration-normal: 600ms;
+    }
+
+    :root[data-theme="dark"], .tone-dark {
+      color-scheme: dark;
+      --bg: #0c1511;
+      --bg-2: #111c16;
+      --text: #eaf0e9;
+      --muted: #a6b5ab;
+      --accent: #ecbb8b;
+      --btn-bg: #f1efe6;
+      --btn-text: #14211a;
+      --line: rgba(255, 255, 255, 0.16);
+      --field-bg: rgba(255, 255, 255, 0.07);
+      --error: #ffaaa0;
+      --success: #a5d8b3;
+
+      --g-top: rgba(255, 255, 255, 0.17);
+      --g-bot: rgba(255, 255, 255, 0.04);
+      --g-edge: rgba(255, 255, 255, 0.6);
+      --g-edge-dim: rgba(255, 255, 255, 0.1);
+      --g-shadow: rgba(0, 0, 0, 0.6);
+
+      --orb-a: rgba(48, 112, 82, 0.45);
+      --orb-b: rgba(190, 120, 52, 0.2);
+      --orb-c: rgba(28, 98, 104, 0.4);
+    }
+    .tone-dark { color: var(--text); }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.menu-open { overflow: hidden; }
+    img { display: block; width: 100%; height: auto; }
+    figure { margin: 0; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--glow); color: #2b1708; }
+    select option { background: var(--bg); color: var(--text); }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    .skip-link {
+      position: fixed; z-index: 1000; top: 0.75rem; left: 0.75rem;
+      padding: 0.75rem 1.1rem; border-radius: 999px; transform: translateY(-200%);
+      background: var(--btn-bg); color: var(--btn-text);
+      transition: transform var(--duration-fast) var(--ease-out);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    :focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; }
+
+    .container { width: var(--page); margin-inline: auto; }
+    .section { position: relative; padding-block: var(--space-7); }
+
+    /* ---------- Ambient background (gives the glass something to refract) ---------- */
+    .atmosphere { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--bg); }
+    .atmosphere i { position: absolute; border-radius: 50%; }
+    .atmosphere .o1 { width: 70vmax; height: 70vmax; left: -22vmax; top: -26vmax; background: radial-gradient(closest-side, var(--orb-a), transparent); animation: driftA 44s ease-in-out infinite alternate; }
+    .atmosphere .o2 { width: 60vmax; height: 60vmax; right: -20vmax; top: 16vh; background: radial-gradient(closest-side, var(--orb-b), transparent); animation: driftB 52s ease-in-out infinite alternate; }
+    .atmosphere .o3 { width: 58vmax; height: 58vmax; left: 10vw; bottom: -32vmax; background: radial-gradient(closest-side, var(--orb-c), transparent); animation: driftC 48s ease-in-out infinite alternate; }
+    @keyframes driftA { to { transform: translate(14vmax, 10vmax) scale(1.08); } }
+    @keyframes driftB { to { transform: translate(-12vmax, 8vmax) scale(1.12); } }
+    @keyframes driftC { to { transform: translate(10vmax, -8vmax) scale(1.06); } }
+
+    /* ---------- Liquid glass primitive ---------- */
+    .glass {
+      --r: 28px;
+      position: relative;
+      isolation: isolate;
+      border-radius: var(--r);
+      background: linear-gradient(145deg, var(--g-top), var(--g-bot));
+      -webkit-backdrop-filter: blur(22px) saturate(1.7);
+      backdrop-filter: blur(22px) saturate(1.7);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.55),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 0 24px rgba(255, 255, 255, 0.06),
+        0 34px 60px -30px var(--g-shadow),
+        0 8px 22px -12px var(--g-shadow);
+    }
+    /* bright rim that fades along the edge, like light caught in a glass bevel */
+    .glass::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: inherit; padding: 1px;
+      pointer-events: none;
+      background: linear-gradient(135deg, var(--g-edge) 0%, var(--g-edge-dim) 24%, transparent 48%, var(--g-edge-dim) 76%, var(--g-edge) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    }
+    /* soft light that follows the cursor */
+    .glass::after {
+      content: "";
+      position: absolute; inset: 0; z-index: -1;
+      border-radius: inherit; pointer-events: none;
+      opacity: 0; transition: opacity 0.5s;
+      background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.3), transparent 62%);
+    }
+    .glass:hover::after { opacity: 1; }
+
+    /* ---------- Type helpers ---------- */
+    .display {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.012em;
+      line-height: 1.04;
+      text-wrap: balance;
+    }
+    .section-title { max-width: 18ch; font-size: clamp(2.8rem, 5.6vw, 5.2rem); }
+    .muted { color: var(--muted); }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      margin: 0 0 1.5rem; padding: 0.45rem 1.05rem 0.45rem 0.85rem;
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 0.92rem; font-weight: 400; letter-spacing: 0.02em; line-height: 1.2;
+      background: color-mix(in srgb, var(--text) 6%, transparent);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 0 0 1px var(--line);
+    }
+    .eyebrow::before {
+      content: ""; width: 0.5rem; height: 0.5rem; border-radius: 50%;
+      background: var(--glow);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--glow) 26%, transparent), 0 0 14px var(--glow);
+    }
+
+    .reveal { opacity: 0; transform: translateY(1.1rem); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      position: relative;
+      min-height: 3.35rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      padding: 0.9rem 1.75rem;
+      border: 1px solid transparent; border-radius: 999px;
+      background: var(--btn-bg); color: var(--btn-text);
+      font-family: var(--font-body); font-size: 1rem; font-weight: 500; letter-spacing: 0.01em; line-height: 1;
+      cursor: pointer;
+      transition: transform var(--duration-fast) var(--ease-out), box-shadow 0.4s, filter 0.4s, background 0.4s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-warm {
+      --btn-text: #2b1708;
+      background: linear-gradient(180deg, #f8d2a2 0%, #e8a566 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -2px 6px rgba(160, 84, 20, 0.25), 0 14px 34px -12px rgba(232, 165, 102, 0.75);
+    }
+    .btn-warm:hover { filter: brightness(1.07); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -2px 6px rgba(160, 84, 20, 0.25), 0 18px 44px -10px rgba(232, 165, 102, 0.95); }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.1); color: var(--text); border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.2); }
+
+    /* ---------- Header: floating glass capsule ---------- */
+    .site-header {
+      --h-text: #f4f6ef;
+      --h-tint: rgba(16, 28, 22, 0.36);
+      --h-edge: rgba(255, 255, 255, 0.5);
+      --h-shadow: rgba(0, 0, 0, 0.45);
+      --h-hover: rgba(255, 255, 255, 0.16);
+      position: fixed; z-index: 100; inset: 0 0 auto;
+      padding-top: 0.9rem;
+      pointer-events: none;
+    }
+    .site-header[data-tone="light"] {
+      --h-text: #16241c;
+      --h-tint: rgba(255, 255, 255, 0.58);
+      --h-edge: rgba(255, 255, 255, 1);
+      --h-shadow: rgba(38, 64, 50, 0.3);
+      --h-hover: rgba(22, 36, 28, 0.08);
+    }
+    .site-header .header-inner {
+      pointer-events: auto;
+      position: relative; z-index: 2;
+      width: min(94vw, 1240px);
+      height: 4.3rem;
+      padding: 0 0.8rem 0 1.7rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      border-radius: 999px;
+      color: var(--h-text);
+      background: var(--h-tint);
+      -webkit-backdrop-filter: blur(22px) saturate(1.8);
+      backdrop-filter: blur(22px) saturate(1.8);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0 0 0 1px color-mix(in srgb, var(--h-edge) 24%, transparent),
+        0 22px 50px -24px var(--h-shadow);
+      transition: height 0.5s var(--ease-out), background 0.5s, color 0.5s, box-shadow 0.5s;
+    }
+    .site-header.scrolled .header-inner { height: 3.8rem; }
+    .brand {
+      position: relative; flex-shrink: 0;
+      font-family: var(--font-display); font-size: 1.55rem; font-weight: 600;
+      letter-spacing: 0.26em; line-height: 1;
+    }
+    .brand small {
+      display: block; margin-top: 0.3rem;
+      font-family: var(--font-body); font-size: 0.5rem; font-weight: 400; letter-spacing: 0.34em; text-transform: uppercase; opacity: 0.75;
+    }
+    .desktop-nav { position: relative; display: flex; align-items: center; gap: 0.15rem; }
+    .nav-link {
+      position: relative; z-index: 1;
+      padding: 0.6rem 1.05rem; border-radius: 999px;
+      font-size: 0.95rem; font-weight: 400; letter-spacing: 0.01em; white-space: nowrap;
+      opacity: 0.85; transition: opacity 0.3s;
+    }
+    .nav-link:hover, .nav-link.active { opacity: 1; }
+    .nav-pill {
+      position: absolute; z-index: 0; top: 50%; left: 0;
+      width: var(--pw, 0px); height: 2.5rem;
+      transform: translate(var(--px, 0px), -50%);
+      border-radius: 999px;
+      background: var(--h-hover);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 1px color-mix(in srgb, var(--h-text) 12%, transparent);
+      opacity: 0; pointer-events: none;
+      transition: transform 0.55s var(--ease-out), width 0.55s var(--ease-out), opacity 0.3s;
+    }
+    .nav-pill.on { opacity: 1; }
+    .header-actions { display: flex; align-items: center; gap: 0.55rem; flex-shrink: 0; }
+    .language-select, .theme-toggle {
+      height: 2.6rem;
+      border: 1px solid color-mix(in srgb, var(--h-text) 24%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--h-text) 8%, transparent);
+      color: inherit; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .language-select:hover, .theme-toggle:hover { background: color-mix(in srgb, var(--h-text) 16%, transparent); }
+    .language-select { width: 3.7rem; padding: 0 0.5rem; font-size: 0.85rem; font-weight: 500; text-align: center; text-align-last: center; -webkit-appearance: none; appearance: none; }
+    .theme-toggle { width: 2.6rem; padding: 0; display: grid; place-items: center; font-size: 1.05rem; line-height: 1; }
+    .header-cta { min-height: 2.6rem; padding: 0.65rem 1.4rem; font-size: 0.95rem; }
+    .menu-toggle {
+      display: none; width: 2.9rem; height: 2.9rem; border: 0; border-radius: 50%;
+      background: transparent; color: inherit; cursor: pointer;
+    }
+    .menu-toggle span, .menu-toggle::before, .menu-toggle::after {
+      content: ""; display: block; width: 1.35rem; height: 1.5px; margin: 0.28rem auto;
+      background: currentColor; border-radius: 2px;
+      transition: transform var(--duration-normal) var(--ease-out), opacity var(--duration-fast);
+    }
+    .menu-toggle[aria-expanded="true"] span { opacity: 0; }
+    .menu-toggle[aria-expanded="true"]::before { transform: translateY(0.4rem) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"]::after { transform: translateY(-0.4rem) rotate(-45deg); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      min-height: 100vh; min-height: 100svh;
+      background: radial-gradient(120% 80% at 50% 115%, #24493c 0%, #122219 48%, #0a120e 100%);
+    }
+    .hero-media, .hero-media::after { position: absolute; inset: 0; }
+    .hero-media { z-index: -3; overflow: hidden; }
+    .hero-media img { height: 100%; object-fit: cover; object-position: 58% center; animation: heroZoom 22s var(--ease-smooth) both; }
+    .hero-media::after {
+      content: "";
+      background:
+        linear-gradient(180deg, rgba(8, 16, 12, 0.62) 0%, rgba(8, 16, 12, 0.26) 38%, rgba(8, 16, 12, 0.7) 100%),
+        radial-gradient(60% 55% at 50% 48%, rgba(8, 16, 12, 0), rgba(8, 16, 12, 0.38));
+    }
+    @keyframes heroZoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+    .hero-glow { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+    .hero-glow i { position: absolute; border-radius: 50%; }
+    .hero-glow .g1 { width: 62vmax; height: 62vmax; left: 50%; top: 46%; margin: -31vmax 0 0 -31vmax; background: radial-gradient(closest-side, rgba(232, 165, 102, 0.34), transparent); animation: glowPulse 10s ease-in-out infinite; }
+    .hero-glow .g2 { width: 50vmax; height: 50vmax; left: -14vmax; bottom: -22vmax; background: radial-gradient(closest-side, rgba(47, 143, 134, 0.34), transparent); animation: driftA 40s ease-in-out infinite alternate; }
+    .hero-glow .g3 { width: 46vmax; height: 46vmax; right: -14vmax; top: -18vmax; background: radial-gradient(closest-side, rgba(120, 178, 132, 0.26), transparent); animation: driftB 46s ease-in-out infinite alternate; }
+    @keyframes glowPulse { 0%, 100% { opacity: 0.5; transform: scale(0.86); } 50% { opacity: 1; transform: scale(1.06); } }
+
+    .hero-inner {
+      min-height: 100vh; min-height: 100svh;
+      display: grid; grid-template-rows: 1fr auto;
+      padding: 6.6rem 0 clamp(1.25rem, 3.5vh, 2.5rem);
+    }
+    .hero-stage {
+      --orb: clamp(190px, min(46vw, 42svh), 440px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: clamp(1.4rem, 4.5vh, 2.6rem);
+      padding-block: 1rem;
+    }
+    .hero .eyebrow { margin: 0; background: rgba(255, 255, 255, 0.1); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.16); opacity: 0; animation: riseIn 1s 0.3s var(--ease-out) forwards; }
+
+    /* the breathing glass orb */
+    .breath { position: relative; width: var(--orb); aspect-ratio: 1; }
+    .ripple {
+      position: absolute; inset: 0; border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      background: radial-gradient(closest-side, transparent 70%, rgba(255, 255, 255, 0.06));
+      opacity: 0; animation: ripple 10s ease-out infinite;
+    }
+    .ripple:nth-child(2) { animation-delay: 3.33s; }
+    .ripple:nth-child(3) { animation-delay: 6.66s; }
+    @keyframes ripple { 0% { transform: scale(0.8); opacity: 0; } 10% { opacity: 0.6; } 100% { transform: scale(1.8); opacity: 0; } }
+
+    .orb-track { position: absolute; inset: -15%; width: 130%; height: 130%; overflow: visible; pointer-events: none; }
+    .orb-track circle { fill: none; stroke: rgba(255, 255, 255, 0.2); stroke-width: 0.35; stroke-dasharray: 0.4 1.6; }
+    .orb-bead { position: absolute; inset: -15%; animation: spin 10s linear infinite; pointer-events: none; }
+    .orb-bead::before {
+      content: ""; position: absolute; top: -0.32rem; left: 50%; width: 0.64rem; height: 0.64rem; margin-left: -0.32rem;
+      border-radius: 50%; background: #fff2dc; box-shadow: 0 0 16px 5px rgba(255, 205, 150, 0.85);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .orb {
+      position: absolute; inset: 0; isolation: isolate; overflow: hidden;
+      border-radius: 50%;
+      animation: breathe 10s ease-in-out infinite;
+      box-shadow: 0 50px 110px -30px rgba(0, 0, 0, 0.7), 0 0 130px rgba(232, 165, 102, 0.22);
+    }
+    @keyframes breathe { 0%, 100% { transform: scale(0.8); } 50% { transform: scale(1); } }
+    .orb-blob { position: absolute; border-radius: 50%; }
+    .orb-blob.b1 { width: 78%; height: 78%; left: -14%; top: -12%; background: radial-gradient(closest-side, #ffd7a6, #e8a566 50%, transparent 100%); animation: blobA 13s ease-in-out infinite alternate; }
+    .orb-blob.b2 { width: 74%; height: 74%; right: -16%; bottom: -14%; background: radial-gradient(closest-side, #8fe0d2, #2f8f86 52%, transparent 100%); animation: blobB 17s ease-in-out infinite alternate; }
+    .orb-blob.b3 { width: 56%; height: 56%; left: 28%; top: 36%; background: radial-gradient(closest-side, rgba(214, 240, 190, 0.95), transparent 100%); animation: blobC 15s ease-in-out infinite alternate; }
+    @keyframes blobA { to { transform: translate(34%, 26%) scale(1.15); } }
+    @keyframes blobB { to { transform: translate(-30%, -24%) scale(1.1); } }
+    @keyframes blobC { to { transform: translate(-22%, -30%) scale(0.85); } }
+
+    .orb-glass {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: radial-gradient(120% 120% at 30% 16%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.02) 56%, rgba(255, 255, 255, 0.12) 100%);
+      -webkit-backdrop-filter: blur(16px) saturate(1.6);
+      backdrop-filter: blur(16px) saturate(1.6);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 14px 34px rgba(255, 255, 255, 0.34),
+        inset 0 -26px 56px rgba(0, 0, 0, 0.26),
+        inset 0 0 70px rgba(255, 255, 255, 0.1);
+    }
+    /* chromatic rim */
+    .orb-glass::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%; padding: 1.5px;
+      background: conic-gradient(from 20deg, rgba(255, 255, 255, 0.95), rgba(140, 232, 220, 0.55), rgba(255, 255, 255, 0.1) 30%, rgba(255, 196, 146, 0.6) 55%, rgba(255, 255, 255, 0.1) 76%, rgba(255, 255, 255, 0.95));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    }
+    /* specular highlight */
+    .orb-glass::after {
+      content: ""; position: absolute; top: 7%; left: 15%; width: 46%; height: 20%;
+      border-radius: 50%; transform: rotate(-24deg);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+      filter: blur(2px);
+    }
+    .orb-label {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      font-family: var(--font-display); font-style: italic; font-weight: 500;
+      font-size: clamp(1.9rem, 3.4vw, 3rem); letter-spacing: 0.01em; color: #fff;
+      text-shadow: 0 2px 26px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+    }
+    .orb-label.in { animation: labelIn 10s ease-in-out infinite; }
+    .orb-label.out { animation: labelOut 10s ease-in-out infinite; }
+    @keyframes labelIn { 0% { opacity: 0; transform: translateY(0.5rem); } 10%, 40% { opacity: 1; transform: none; } 50%, 100% { opacity: 0; transform: translateY(-0.4rem); } }
+    @keyframes labelOut { 0%, 50% { opacity: 0; transform: translateY(0.5rem); } 60%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-0.4rem); } }
+
+    .hero-dock {
+      --r: 36px;
+      width: min(1040px, 100%); margin-inline: auto;
+      padding: clamp(1.2rem, 2.4vw, 1.75rem) clamp(1.4rem, 3vw, 2.4rem);
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      animation: dockIn 1.2s 0.5s var(--ease-out) both;
+    }
+    @keyframes dockIn { from { transform: translateY(2.5rem); } to { transform: none; } }
+    .dock-copy { max-width: 560px; opacity: 0; animation: riseIn 1s 0.9s var(--ease-out) forwards; }
+    .dock-line { margin: 0; font-family: var(--font-display); font-size: clamp(1.7rem, 2.7vw, 2.4rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.005em; }
+    .hero-subtitle { margin: 0.55rem 0 0; color: rgba(234, 240, 233, 0.8); font-size: 1rem; }
+    .hero-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; opacity: 0; animation: riseIn 1s 1.05s var(--ease-out) forwards; }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(1.2rem); } to { opacity: 1; transform: none; } }
+
+    /* ---------- About ---------- */
+    .about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr); gap: clamp(3rem, 8vw, 8rem); align-items: center; }
+    .about-copy .lead { max-width: 34em; margin: 2.2rem 0 0; font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.7; color: var(--muted); }
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: var(--space-5); }
+    .stat { --r: 26px; padding: 1.5rem 1.6rem 1.35rem; }
+    .stat-number { display: block; font-family: var(--font-display); font-weight: 500; font-variant-numeric: lining-nums; font-size: clamp(2.8rem, 4.2vw, 4.2rem); line-height: 1; letter-spacing: -0.01em; }
+    .stat-label { display: block; margin-top: 0.6rem; color: var(--muted); font-size: 0.95rem; }
+    .about-image {
+      position: relative; min-height: 680px; overflow: hidden;
+      border-radius: 50% 50% 36px 36px / 26% 26% 36px 36px;
+      background: linear-gradient(160deg, #b8cdb9, #7fa08d 60%, #46705f);
+      box-shadow: 0 50px 90px -40px rgba(38, 64, 50, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+    .about-image img { position: absolute; inset: 0; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
+    .about-image:hover img { transform: scale(1.04); }
+    .about-image::after {
+      content: attr(data-caption);
+      position: absolute; left: 1.2rem; right: 1.2rem; bottom: 1.2rem;
+      padding: 0.95rem 1.3rem; border-radius: 999px; text-align: center;
+      color: #f4f6ef; font-size: 0.95rem; letter-spacing: 0.01em;
+      background: rgba(18, 30, 24, 0.36);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      backdrop-filter: blur(18px) saturate(1.6);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    }
+
+    /* ---------- Services ---------- */
+    .services {
+      background:
+        radial-gradient(70% 60% at 88% 0%, rgba(232, 165, 102, 0.2), transparent 62%),
+        radial-gradient(70% 60% at 0% 100%, rgba(47, 143, 134, 0.26), transparent 62%),
+        #0e1a14;
+    }
+    .services-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: var(--space-6); }
+    .services-intro { max-width: 400px; margin: 0; color: var(--muted); }
+    .exchange-note { margin: -2rem 0 2rem; max-width: 700px; color: var(--accent); font-size: 0.9rem; }
+    .exchange-note a { text-decoration: underline; text-underline-offset: 3px; }
+    .services-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 0.62fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+    .service-list { display: grid; gap: 1rem; }
+    .service-item {
+      --r: 28px;
+      display: grid; grid-template-columns: 3.7rem minmax(0, 1fr) auto; gap: 1.3rem; align-items: center;
+      padding: 1.45rem 1.7rem 1.45rem 1.4rem;
+      color: var(--text); cursor: pointer;
+      transition: transform 0.6s var(--ease-out), background 0.6s, box-shadow 0.6s;
+    }
+    .service-item:hover, .service-item:focus-visible, .service-item.active {
+      transform: translateX(0.5rem);
+      background: linear-gradient(145deg, rgba(232, 165, 102, 0.3), rgba(255, 255, 255, 0.06));
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.6),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 0 30px rgba(232, 165, 102, 0.14),
+        0 34px 70px -30px rgba(232, 165, 102, 0.45),
+        0 8px 22px -12px var(--g-shadow);
+    }
+    .service-icon {
+      width: 3.7rem; height: 3.7rem; display: grid; place-items: center; border-radius: 50%;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      transition: background 0.6s, color 0.6s, transform 0.6s var(--ease-out);
+    }
+    .service-icon svg { width: 1.7rem; height: 1.7rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .service-item:hover .service-icon, .service-item.active .service-icon {
+      background: linear-gradient(180deg, #f8d2a2, #e8a566); color: #2b1708; transform: scale(1.06);
+    }
+    .service-name { display: block; font-family: var(--font-display); font-size: clamp(1.8rem, 2.5vw, 2.5rem); font-weight: 500; line-height: 1.08; }
+    .service-desc { display: block; max-width: 32em; margin-top: 0.4rem; color: var(--muted); font-size: 0.97rem; line-height: 1.55; }
+    .service-meta { text-align: right; white-space: nowrap; }
+    .service-price { display: block; font-size: 1.15rem; font-weight: 500; }
+    .service-duration { display: block; margin-top: 0.2rem; color: var(--accent); font-size: 0.92rem; }
+    .service-visual {
+      position: sticky; top: 7rem; align-self: start;
+      height: min(680px, 74vh); overflow: hidden; border-radius: 40px;
+      background: linear-gradient(160deg, #35665a, #16302a);
+      box-shadow: 0 50px 90px -34px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+    }
+    .service-visual img { position: absolute; inset: 0; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 0.9s var(--ease-smooth), transform 1.3s var(--ease-out); }
+    .service-visual img.active { opacity: 1; transform: scale(1); }
+    .service-visual::after {
+      content: attr(data-caption);
+      position: absolute; right: 1.1rem; bottom: 1.1rem;
+      padding: 0.8rem 1.3rem; border-radius: 999px;
+      color: #f4f6ef; font-size: 0.95rem; font-weight: 500;
+      background: rgba(18, 30, 24, 0.38);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      backdrop-filter: blur(18px) saturate(1.6);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    }
+
+    /* ---------- Process ---------- */
+    .process-head { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: end; }
+    .process-head p { max-width: 460px; justify-self: end; margin: 0; }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; margin-top: var(--space-6); padding-bottom: 5rem; }
+    .step { --r: 30px; padding: 1.7rem 1.6rem 1.9rem; margin-top: calc(var(--i, 0) * 1.6rem); }
+    .step:nth-child(1) { --i: 0; }
+    .step:nth-child(2) { --i: 1; }
+    .step:nth-child(3) { --i: 2; }
+    .step:nth-child(4) { --i: 3; }
+    .step-number {
+      width: 3rem; height: 3rem; display: grid; place-items: center; border-radius: 50%;
+      font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; font-variant-numeric: lining-nums;
+      color: #2b1708;
+      background: linear-gradient(180deg, #f8d2a2, #e8a566);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 10px 24px -10px rgba(232, 165, 102, 0.9);
+    }
+    .step h3 { margin: 1.4rem 0 0.7rem; font-family: var(--font-display); font-size: 1.8rem; font-weight: 500; line-height: 1.12; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.6; }
+
+    /* ---------- Gallery ---------- */
+    .gallery { padding-top: 0; }
+    .gallery-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: var(--space-5); }
+    .gallery-head p { max-width: 360px; margin: 0; }
+    .gallery-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; grid-template-rows: 320px 520px; gap: 1rem; }
+    .gallery-item {
+      position: relative; overflow: hidden; border-radius: 34px;
+      background: linear-gradient(160deg, #b8cdb9, #7fa08d 60%, #46705f);
+      box-shadow: 0 40px 70px -40px rgba(38, 64, 50, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item img { height: 100%; object-fit: cover; transition: transform 1.3s var(--ease-out); }
+    .gallery-item:hover img { transform: scale(1.045); }
+    .gallery-caption {
+      position: absolute; left: 1.1rem; bottom: 1.1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.65rem 1.2rem; border-radius: 999px;
+      color: #f4f6ef; font-size: 0.95rem;
+      background: rgba(18, 30, 24, 0.36);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      backdrop-filter: blur(18px) saturate(1.6);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    }
+    .gallery-caption span:last-child { color: #f0c79b; font-variant-numeric: lining-nums; }
+
+    /* ---------- Reviews ---------- */
+    .reviews-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+    .slider-controls { display: none; gap: 0.6rem; }
+    .slider-btn {
+      --r: 999px;
+      width: 3rem; height: 3rem; border: 0; padding: 0;
+      color: var(--text); font-size: 1.1rem; cursor: pointer;
+      transition: transform var(--duration-fast) var(--ease-out);
+    }
+    .slider-btn:active { transform: scale(0.92); }
+    .review-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; margin-top: var(--space-5); }
+    .review {
+      --r: 32px;
+      min-height: 350px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: clamp(1.6rem, 3vw, 2.4rem);
+    }
+    .stars { color: #d8873a; font-size: 1.05rem; letter-spacing: 0.2em; }
+    :root[data-theme="dark"] .stars, .tone-dark .stars { color: var(--glow); }
+    .review blockquote { margin: 2rem 0; font-family: var(--font-display); font-size: clamp(1.4rem, 1.9vw, 1.75rem); font-weight: 500; line-height: 1.32; text-wrap: pretty; }
+    .review footer { color: var(--muted); font-size: 0.95rem; }
+
+    /* ---------- Booking ---------- */
+    .booking {
+      overflow: hidden;
+      background:
+        radial-gradient(70% 60% at 0% 0%, rgba(47, 143, 134, 0.3), transparent 62%),
+        radial-gradient(60% 60% at 100% 100%, rgba(232, 165, 102, 0.22), transparent 62%),
+        #0e1a14;
+    }
+    .booking::before {
+      content: ""; position: absolute; width: 42rem; height: 42rem; left: -20rem; top: -22rem;
+      border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%;
+      box-shadow: 0 0 0 6rem rgba(255, 255, 255, 0.018), 0 0 0 12rem rgba(255, 255, 255, 0.012), 0 0 0 18rem rgba(255, 255, 255, 0.008);
+      pointer-events: none;
+    }
+    .booking-grid { position: relative; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(500px, 1fr); gap: clamp(3rem, 8vw, 8rem); }
+    .booking-copy { position: sticky; top: 8rem; align-self: start; }
+    .booking-copy p { max-width: 490px; margin-top: 2rem; color: var(--muted); font-size: 1.1rem; }
+    .booking-contact { display: grid; gap: 0.75rem; margin-top: 2.6rem; justify-items: start; }
+    .booking-contact a {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 0.8rem 1.4rem 0.8rem 1.1rem; border-radius: 999px;
+      font-size: 1.05rem; font-weight: 400;
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+      transition: background 0.4s, transform 0.4s var(--ease-out);
+    }
+    .booking-contact a:hover { background: rgba(255, 255, 255, 0.14); transform: translateX(0.3rem); }
+    .booking-contact svg { width: 1.2rem; height: 1.2rem; fill: none; stroke: var(--glow); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .booking-form { --r: 38px; padding: clamp(1.5rem, 4vw, 3rem); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3rem 1rem; }
+    .field { position: relative; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { display: block; margin-bottom: 0.5rem; padding-left: 0.3rem; font-size: 0.92rem; font-weight: 500; }
+    .field input, .field select, .field textarea {
+      width: 100%; min-height: 3.5rem;
+      border: 1px solid var(--line); border-radius: 18px;
+      padding: 0.85rem 1.1rem;
+      background: var(--field-bg); color: var(--text);
+      outline: 0;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: border-color var(--duration-fast), box-shadow var(--duration-fast), background var(--duration-fast);
+    }
+    .field input::placeholder, .field textarea::placeholder { color: color-mix(in srgb, var(--muted) 75%, transparent); }
+    .field select {
+      -webkit-appearance: none; appearance: none; padding-right: 2.8rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23c9d3cc' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1.1rem center;
+    }
+    .field select option { background: #14211a; color: #eaf0e9; }
+    .field textarea { min-height: 6.5rem; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--glow); background: rgba(255, 255, 255, 0.11);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.18), 0 0 0 4px rgba(232, 165, 102, 0.2);
+    }
+    .field [aria-invalid="true"] { border-color: var(--error); }
+    .field-error { min-height: 1.1rem; display: block; margin: 0.35rem 0 0 0.3rem; color: var(--error); font-size: 0.85rem; }
+    .form-note { margin: 1.1rem 0 0; color: var(--muted); font-size: 0.85rem; line-height: 1.55; }
+    .form-submit { width: 100%; margin-top: 1.3rem; min-height: 3.6rem; }
+    .form-success {
+      display: none; align-items: center; gap: 0.9rem;
+      margin-top: 1.25rem; padding: 1rem 1.2rem; border-radius: 20px;
+      border: 1px solid color-mix(in srgb, var(--success) 45%, transparent);
+      background: color-mix(in srgb, var(--success) 14%, transparent);
+      color: var(--success); font-size: 0.95rem;
+    }
+    .form-success.show { display: flex; animation: riseIn 0.7s var(--ease-out); }
+
+    /* ---------- Footer ---------- */
+    .site-footer { padding: 2.6rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); background: #0a120e; color: rgba(234, 240, 233, 0.66); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .site-footer .brand { color: #f4f6ef; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1.6rem; font-size: 0.95rem; }
+    .footer-links a { transition: color 0.3s; }
+    .footer-links a:hover { color: #fff; }
+    .copyright { margin: 0.6rem 0 0; font-size: 0.85rem; text-align: right; }
+
+    .back-to-top {
+      --r: 999px;
+      position: fixed; z-index: 90; right: 1.2rem; bottom: 1.2rem;
+      width: 3.2rem; height: 3.2rem; padding: 0; border: 0;
+      color: var(--text); font-size: 1.15rem; cursor: pointer;
+      opacity: 0; pointer-events: none; transform: translateY(1rem);
+      transition: opacity var(--duration-normal), transform var(--duration-normal) var(--ease-out);
+    }
+    .back-to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (min-width: 1081px) { .mobile-menu { display: none; } }
+
+    @media (max-width: 1080px) {
+      .desktop-nav, .header-cta { display: none; }
+      .menu-toggle { display: block; }
+      .site-header .header-inner { padding-left: 1.4rem; }
+      .mobile-menu {
+        position: fixed; inset: 0; z-index: 1; pointer-events: auto;
+        display: flex; flex-direction: column; justify-content: flex-start; gap: 0.3rem;
+        padding: 7rem 8vw 3rem; overflow-y: auto;
+        background: color-mix(in srgb, var(--bg) 74%, transparent);
+        -webkit-backdrop-filter: blur(30px) saturate(1.7);
+        backdrop-filter: blur(30px) saturate(1.7);
+        color: var(--text);
+        opacity: 0; visibility: hidden; transform: translateY(-1rem);
+        transition: opacity var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out), visibility var(--duration-normal);
+      }
+      .mobile-menu.open { opacity: 1; visibility: visible; transform: none; }
+      .mobile-menu a { border-bottom: 1px solid var(--line); padding: 0.7rem 0; font-family: var(--font-display); font-size: clamp(2rem, 8vw, 3rem); font-weight: 500; line-height: 1.15; }
+      .mobile-menu .mobile-book { width: 100%; margin-top: 1.6rem; border: 0; padding: 1.2rem; font-family: var(--font-body); font-size: 1.05rem; font-weight: 500; text-align: center; }
+    }
+
+    @media (max-width: 1024px) {
+      .about-grid { gap: 3rem; }
+      .about-image { min-height: 600px; }
+      .services-layout { grid-template-columns: 1fr; }
+      .service-visual { display: none; }
+      .booking-grid { grid-template-columns: 1fr; }
+      .booking-copy { position: static; }
+      .timeline { grid-template-columns: repeat(2, 1fr); padding-bottom: 0; }
+      .step { margin-top: 0; }
+      .review { min-height: 380px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --page: min(90vw, 680px); }
+      .section { padding-block: clamp(4.5rem, 16vw, 7rem); }
+      .hero-inner { padding-top: 6rem; }
+      .hero-stage { --orb: clamp(180px, min(62vw, 34svh), 340px); }
+      .hero-media img { object-position: 67% center; }
+      .hero-dock { flex-direction: column; align-items: stretch; gap: 1.2rem; --r: 30px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { width: 100%; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image { min-height: 500px; order: -1; }
+      .services-head, .gallery-head, .reviews-head { align-items: flex-start; flex-direction: column; }
+      .service-item { grid-template-columns: 3.2rem minmax(0, 1fr); gap: 1rem; padding: 1.25rem 1.2rem; }
+      .service-icon { width: 3.2rem; height: 3.2rem; }
+      .service-meta { grid-column: 2; display: flex; align-items: baseline; gap: 1rem; text-align: left; }
+      .service-item:hover, .service-item:focus-visible, .service-item.active { transform: none; }
+      .process-head { grid-template-columns: 1fr; }
+      .process-head p { justify-self: start; }
+      .timeline { grid-template-columns: 1fr; margin-top: 3rem; }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: 520px 320px 420px; }
+      .gallery-item:first-child { grid-row: auto; }
+      .slider-controls { display: flex; }
+      .review-track {
+        display: flex; gap: 0.9rem; width: calc(100% + 5vw); padding-block: 0.5rem 1.5rem; margin-top: 2rem;
+        overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-inline: contain;
+      }
+      .review-track::-webkit-scrollbar { display: none; }
+      .review { flex: 0 0 min(85vw, 420px); min-height: 340px; scroll-snap-align: start; }
+      .booking-form { margin-inline: -2vw; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { justify-content: flex-start; }
+      .copyright { text-align: left; }
+      .brand { font-size: 1.35rem; }
+    }
+
+    @media (max-width: 480px) {
+      .stats { grid-template-columns: 1fr; }
+      .about-image { min-height: 420px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .booking-form { padding: 1.4rem; }
+      .gallery-grid { grid-template-rows: 440px 280px 360px; }
+      .site-header .header-inner { height: 3.9rem; padding-left: 1.2rem; padding-right: 0.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .orb { transform: scale(0.92); }
+      .orb-label.out, .ripple, .orb-bead { display: none; }
+      .orb-label.in { opacity: 1; }
+      .hero .eyebrow, .dock-copy, .hero-actions { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skipLink">Przejdź do głównej treści</a>
+  <div class="atmosphere" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader" data-tone="dark">
+    <div class="container header-inner">
+      <a class="brand" href="#home" data-i18n-attrs='{"aria-label":"brandHome"}' aria-label="TISZA — strona główna">TISZA<small>massage space</small></a>
+      <nav class="desktop-nav" data-i18n-attrs='{"aria-label":"navAria"}' aria-label="Nawigacja główna">
+        <span class="nav-pill" aria-hidden="true"></span>
+        <a class="nav-link" href="#about" data-i18n="navAbout">O nas</a>
+        <a class="nav-link" href="#services" data-i18n="navServices">Rytuały</a>
+        <a class="nav-link" href="#process" data-i18n="navProcess">Jak to działa</a>
+        <a class="nav-link" href="#gallery" data-i18n="navGallery">Przestrzeń</a>
+        <a class="nav-link" href="#reviews" data-i18n="navReviews">Opinie</a>
+      </nav>
+      <div class="header-actions">
+        <select id="languageSelect" class="language-select" data-i18n-attrs='{"aria-label":"langSelectAria"}' aria-label="Język strony">
+          <option value="pl" lang="pl">PL</option><option value="uk" lang="uk">UA</option><option value="en" lang="en">EN</option>
+        </select>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Włącz ciemny motyw" title="Włącz ciemny motyw" aria-pressed="false"><span aria-hidden="true">☾</span></button>
+        <a class="btn btn-warm header-cta js-magnetic" href="#booking" data-i18n="ctaBook">Zarezerwuj</a>
+        <button class="menu-toggle" type="button" data-i18n-attrs='{"aria-label":"menuOpen"}' aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+      </div>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" data-i18n-attrs='{"aria-label":"mobileNavAria"}' aria-label="Nawigacja mobilna">
+      <a href="#about" data-i18n="navAbout">O nas</a>
+      <a href="#services" data-i18n="navServices">Rytuały</a>
+      <a href="#process" data-i18n="navProcess">Jak to działa</a>
+      <a href="#gallery" data-i18n="navGallery">Przestrzeń</a>
+      <a href="#reviews" data-i18n="navReviews">Opinie</a>
+      <a class="btn btn-warm mobile-book" href="#booking" data-i18n="ctaBookFull">Zarezerwuj sesję</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Hero: дихаюча скляна сфера -->
+    <section class="hero tone-dark" id="home" data-tone="dark" aria-labelledby="heroTitle">
+      <div class="hero-media" aria-hidden="true">
+        <img src="images/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+      </div>
+      <div class="hero-glow" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
+      <div class="container hero-inner">
+        <div class="hero-stage">
+          <h1 class="sr-only" id="heroTitle" data-i18n="heroH1">TISZA — kameralna przestrzeń masażu we Wrocławiu</h1>
+          <p class="eyebrow" data-i18n="heroEyebrow">Kameralna przestrzeń masażu · Wrocław</p>
+          <div class="breath" aria-hidden="true">
+            <span class="ripple"></span><span class="ripple"></span><span class="ripple"></span>
+            <svg class="orb-track" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49.5"/></svg>
+            <span class="orb-bead"></span>
+            <div class="orb">
+              <span class="orb-blob b1"></span><span class="orb-blob b2"></span><span class="orb-blob b3"></span>
+              <span class="orb-glass"></span>
+              <span class="orb-label in" data-i18n="breathIn">Wdech</span>
+              <span class="orb-label out" data-i18n="breathOut">Wydech</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-dock glass">
+          <div class="dock-copy">
+            <p class="dock-line" data-i18n="heroDockLine">Wolniej. Głębiej. Do siebie.</p>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">Osobiste rytuały dotyku, które przywracają lekkość, spokój i poczucie obecności we własnym ciele.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-warm js-magnetic" href="#booking" data-i18n="ctaChooseTime">Wybierz swój czas</a>
+            <a class="btn btn-ghost" href="#services" data-i18n="ctaExplore">Poznaj rytuały</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about" data-tone="light" aria-labelledby="aboutTitle">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <div class="reveal">
+            <p class="eyebrow" data-i18n="aboutEyebrow">Filozofia TISZY</p>
+            <h2 class="display section-title" id="aboutTitle" data-i18n="aboutTitle">Nie tylko masaż.<br>Miejsce, gdzie Cię słyszą.</h2>
+            <p class="lead" data-i18n="aboutLead">Przed każdą sesją pytamy nie tylko „gdzie boli”, ale też „jak się dziś czujesz”. Tak powstaje rytuał dopasowany do Twojego tempa, ciała i stanu w danym dniu.</p>
+          </div>
+          <div class="stats" data-i18n-attrs='{"aria-label":"statsAria"}' aria-label="Nasze doświadczenie w liczbach">
+            <div class="stat glass"><strong class="stat-number"><span data-count="8">0</span>+</strong><span class="stat-label" data-i18n="statYears">lat praktyki</span></div>
+            <div class="stat glass"><strong class="stat-number"><span data-count="4000">0</span>+</strong><span class="stat-label" data-i18n="statSessions">przeprowadzonych sesji</span></div>
+            <div class="stat glass"><strong class="stat-number"><span data-count="97">0</span>%</strong><span class="stat-label" data-i18n="statReturn">gości wraca</span></div>
+            <div class="stat glass"><strong class="stat-number"><span data-count="5" data-decimal="true">0</span></strong><span class="stat-label" data-i18n="statRating">średnia ocena</span></div>
+          </div>
+        </div>
+        <figure class="about-image" data-caption="Miejsce, w którym nie trzeba się spieszyć" data-i18n-attrs='{"data-caption":"aboutCaption"}'>
+          <img src="images/interior-02.jpg" alt="Jasny gabinet masażu TISZA z naturalnym drewnem i zielenią" data-i18n-attrs='{"alt":"aboutImgAlt"}' width="1920" height="1080" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section services tone-dark" id="services" data-tone="dark" aria-labelledby="servicesTitle">
+      <div class="container">
+        <div class="services-head reveal">
+          <div>
+            <p class="eyebrow" data-i18n="servicesEyebrow">Rytuały masażu</p>
+            <h2 class="display section-title" id="servicesTitle" data-i18n="servicesTitle">Wybierz, jak chcesz się poczuć.</h2>
+          </div>
+          <p class="services-intro" data-i18n="servicesIntro">Każdy rytuał dopasowujemy do Twoich potrzeb — od siły nacisku po aromat olejku i muzykę.</p>
+        </div>
+        <p id="exchangeNote" class="exchange-note" role="status" hidden></p>
+        <div class="services-layout">
+          <div class="service-list" role="list">
+            <a class="service-item glass active" href="#booking" data-service="0" role="listitem">
+              <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9c3-3 6-3 9 0s6 3 9 0M3 15c3-3 6-3 9 0s6 3 9 0"/></svg></span>
+              <span><span class="service-name" data-i18n="svc0Name">Cicha fala</span><span class="service-desc" data-i18n="svc0Desc">Delikatny masaż całego ciała dla głębokiego relaksu i lepszego snu.</span></span>
+              <span class="service-meta"><span class="service-price">220 zł</span><span class="service-duration" data-i18n="dur60">60 min</span></span>
+            </a>
+            <a class="service-item glass" href="#booking" data-service="1" role="listitem">
+              <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4"/></svg></span>
+              <span><span class="service-name" data-i18n="svc1Name">Głębia</span><span class="service-desc" data-i18n="svc1Desc">Powolna praca z napiętymi mięśniami, przywracająca ruchomość i lekkość.</span></span>
+              <span class="service-meta"><span class="service-price">280 zł</span><span class="service-duration" data-i18n="dur75">75 min</span></span>
+            </a>
+            <a class="service-item glass" href="#booking" data-service="2" role="listitem">
+              <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="3.4" rx="1.7"/><rect x="9" y="8.3" width="6" height="3.4" rx="1.7"/><rect x="9" y="13.6" width="6" height="3.4" rx="1.7"/><rect x="8" y="18.9" width="8" height="2.6" rx="1.3"/></svg></span>
+              <span><span class="service-name" data-i18n="svc2Name">Plecy i szyja</span><span class="service-desc" data-i18n="svc2Desc">Skoncentrowany rytuał dla osób, które dużo siedzą, myślą i noszą napięcie w barkach.</span></span>
+              <span class="service-meta"><span class="service-price">170 zł</span><span class="service-duration" data-i18n="dur45">45 min</span></span>
+            </a>
+            <a class="service-item glass" href="#booking" data-service="3" role="listitem">
+              <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="18" rx="8" ry="3"/><ellipse cx="12" cy="12" rx="6" ry="2.6"/><ellipse cx="12" cy="6.6" rx="4" ry="2.2"/></svg></span>
+              <span><span class="service-name" data-i18n="svc3Name">Rytuał kamienny</span><span class="service-desc" data-i18n="svc3Desc">Ciepłe kamienie, aromaterapia i masaż całego ciała — pełny reset.</span></span>
+              <span class="service-meta"><span class="service-price">350 zł</span><span class="service-duration" data-i18n="dur90">90 min</span></span>
+            </a>
+          </div>
+          <div class="service-visual" aria-hidden="true" data-caption="Wybierz rytuał  ↗" data-i18n-attrs='{"data-caption":"servicesVisualCaption"}'>
+            <img class="active" src="images/massage-relax.jpg" alt="">
+            <img src="images/ritual-salt.jpg" alt="" loading="lazy">
+            <img src="images/massage-back.jpg" alt="" loading="lazy">
+            <img src="images/stone-therapy.jpg" alt="" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section" id="process" data-tone="light" aria-labelledby="processTitle">
+      <div class="container">
+        <div class="process-head reveal">
+          <div><p class="eyebrow" data-i18n="processEyebrow">Twój czas dla siebie</p><h2 class="display section-title" id="processTitle" data-i18n="processTitle">Od zgłoszenia do poczucia lekkości.</h2></div>
+          <p class="muted" data-i18n="processIntro">Bez pośpiechu i niezręcznych sytuacji. Zadbamy o szczegóły, byś mógł/mogła po prostu przyjść i odetchnąć.</p>
+        </div>
+        <div class="timeline">
+          <article class="step glass"><span class="step-number" aria-hidden="true">1</span><h3 data-i18n="step1Title">Zostawiasz zgłoszenie</h3><p data-i18n="step1Desc">Wybierz rytuał lub po prostu opisz, jak się czujesz.</p></article>
+          <article class="step glass"><span class="step-number" aria-hidden="true">2</span><h3 data-i18n="step2Title">Ustalamy termin</h3><p data-i18n="step2Desc">Nasz recepcjonista skontaktuje się z Tobą i potwierdzi wizytę.</p></article>
+          <article class="step glass"><span class="step-number" aria-hidden="true">3</span><h3 data-i18n="step3Title">Dopasowujemy sesję</h3><p data-i18n="step3Desc">Terapeuta doprecyzuje Twoje potrzeby, komfort i preferowaną intensywność.</p></article>
+          <article class="step glass"><span class="step-number" aria-hidden="true">4</span><h3 data-i18n="step4Title">Wracasz do siebie</h3><p data-i18n="step4Desc">Po rytuale zostawiamy czas na herbatę i spokojny powrót.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section gallery" id="gallery" data-tone="light" aria-labelledby="galleryTitle">
+      <div class="container">
+        <div class="gallery-head reveal">
+          <div><p class="eyebrow" data-i18n="galleryEyebrow">Nasza przestrzeń</p><h2 class="display section-title" id="galleryTitle" data-i18n="galleryTitle">Światło. Ciepło. Prywatność.</h2></div>
+          <p class="muted" data-i18n="galleryIntro">Osobny gabinet, naturalne materiały i żadnego zbędnego dźwięku.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item"><img src="images/interior-03.jpg" alt="Przestronny gabinet masażu w ciepłych naturalnych odcieniach" data-i18n-attrs='{"alt":"galleryImg1Alt"}' width="1920" height="1080" loading="lazy"><figcaption class="gallery-caption"><span data-i18n="galleryCap1">Sala rytuałów</span><span>01</span></figcaption></figure>
+          <figure class="gallery-item"><img src="images/interior-01.jpg" alt="Gabinet masażu z naturalnym światłem dziennym" data-i18n-attrs='{"alt":"galleryImg2Alt"}' width="1920" height="1080" loading="lazy"><figcaption class="gallery-caption"><span data-i18n="galleryCap2">Poranne światło</span><span>02</span></figcaption></figure>
+          <figure class="gallery-item"><img src="images/interior-04.jpg" alt="Dwa łóżka do masażu w kameralnej przestrzeni wellness" data-i18n-attrs='{"alt":"galleryImg3Alt"}' width="1920" height="1080" loading="lazy"><figcaption class="gallery-caption"><span data-i18n="galleryCap3">Rytuał w parze</span><span>03</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews: demonstration content -->
+    <section class="section reviews" id="reviews" data-tone="light" aria-labelledby="reviewsTitle">
+      <div class="container">
+        <div class="reviews-head reveal">
+          <div><p class="eyebrow" data-i18n="reviewsEyebrow">Słowa naszych gości</p><h2 class="display section-title" id="reviewsTitle" data-i18n="reviewsTitle">Po TISZY.</h2></div>
+          <div class="slider-controls" data-i18n-attrs='{"aria-label":"reviewsSliderAria"}' aria-label="Nawigacja opiniami">
+            <button class="slider-btn glass" type="button" data-slide="prev" data-i18n-attrs='{"aria-label":"prevReview"}' aria-label="Poprzednia opinia">←</button>
+            <button class="slider-btn glass" type="button" data-slide="next" data-i18n-attrs='{"aria-label":"nextReview"}' aria-label="Następna opinia">→</button>
+          </div>
+        </div>
+        <div class="review-track" id="reviewTrack">
+          <article class="review glass"><div><div class="stars" data-i18n-attrs='{"aria-label":"ratingAria"}' aria-label="5 z 5 gwiazdek">★★★★★</div><blockquote data-i18n="review1">„Pierwszy raz od dawna poczułam, że nigdzie się nie spieszę. Bardzo uważny terapeuta i niesamowity spokój w każdym detalu”.</blockquote></div><footer data-i18n="review1Author">Anna · rytuał „Cicha fala”</footer></article>
+          <article class="review glass"><div><div class="stars" data-i18n-attrs='{"aria-label":"ratingAria"}' aria-label="5 z 5 gwiazdek">★★★★★</div><blockquote data-i18n="review2">„Przyszedłem ze spiętą szyją po ciężkim tygodniu pracy. Wyszedłem z uczuciem, jakbym urósł o kilka centymetrów”.</blockquote></div><footer data-i18n="review2Author">Maksym · „Plecy i szyja”</footer></article>
+          <article class="review glass"><div><div class="stars" data-i18n-attrs='{"aria-label":"ratingAria"}' aria-label="5 z 5 gwiazdek">★★★★★</div><blockquote data-i18n="review3">„Tutaj nikt nie mówi niepotrzebnie. Od wejścia po herbatę po masażu — wszystko delikatne, piękne i naprawdę o Tobie”.</blockquote></div><footer data-i18n="review3Author">Sofia · rytuał „Głębia”</footer></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking -->
+    <section class="section booking tone-dark" id="booking" data-tone="dark" aria-labelledby="bookingTitle">
+      <div class="container booking-grid">
+        <div class="booking-copy reveal">
+          <p class="eyebrow" data-i18n="bookingEyebrow">Rezerwacja sesji</p>
+          <h2 class="display section-title" id="bookingTitle" data-i18n="bookingTitle">Podaruj sobie godzinę ciszy.</h2>
+          <p data-i18n="bookingIntro">Zostaw zgłoszenie — zadzwonimy, pomożemy wybrać rytuał i znajdziemy dogodny termin.</p>
+          <div class="booking-contact">
+            <a href="tel:+48713234567"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>+48 71 323 45 67</a>
+            <a href="mailto:hello@tisza-spa.example"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg>hello@tisza-spa.example</a>
+          </div>
+        </div>
+        <form class="booking-form glass" id="bookingForm" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="name" data-i18n="labelName">Imię *</label><input id="name" name="name" type="text" autocomplete="name" required><span class="field-error" id="nameError"></span></div>
+            <div class="field"><label for="phone" data-i18n="labelPhone">Telefon *</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+48 ___ ___ ___" data-i18n-attrs='{"placeholder":"phonePlaceholder"}' required><span class="field-error" id="phoneError"></span></div>
+            <div class="field full"><label for="service" data-i18n="labelService">Rytuał *</label><select id="service" name="service" required><option value="" data-i18n="optChoose">Wybierz rytuał</option><option data-i18n="opt0">Cicha fala · 60 min</option><option data-i18n="opt1">Głębia · 75 min</option><option data-i18n="opt2">Plecy i szyja · 45 min</option><option data-i18n="opt3">Rytuał kamienny · 90 min</option><option data-i18n="optAdvice">Potrzebuję porady</option></select><span class="field-error" id="serviceError"></span></div>
+            <div class="field"><label for="date" data-i18n="labelDate">Preferowana data *</label><input id="date" name="date" type="date" required><span class="field-error" id="dateError"></span></div>
+            <div class="field"><label for="time" data-i18n="labelTime">Preferowana godzina *</label><select id="time" name="time" required><option value="" data-i18n="optChooseTime">Wybierz godzinę</option><option>10:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00–21:00</option></select><span class="field-error" id="timeError"></span></div>
+            <div class="field full"><label for="comment" data-i18n="labelComment">Komentarz</label><textarea id="comment" name="comment" placeholder="Napisz, co Cię teraz niepokoi lub co warto wziąć pod uwagę" data-i18n-attrs='{"placeholder":"commentPlaceholder"}'></textarea><span class="field-error"></span></div>
+          </div>
+          <p class="form-note" data-i18n="formNote">Klikając przycisk, wyrażasz zgodę na przetwarzanie danych kontaktowych w celu ustalenia rezerwacji.</p>
+          <button class="btn btn-warm form-submit" type="submit" data-i18n="submitBtn">Wyślij zgłoszenie</button>
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite"><span aria-hidden="true">✓</span><span data-i18n="successMsg">Demo: dane zostały zweryfikowane, ale zgłoszenie nie zostało wysłane.</span></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-tone="dark">
+    <div class="container footer-inner">
+      <a class="brand" href="#home" data-i18n-attrs='{"aria-label":"brandHome"}' aria-label="TISZA — strona główna">TISZA<small>massage space</small></a>
+      <div><nav class="footer-links" data-i18n-attrs='{"aria-label":"footerNavAria"}' aria-label="Nawigacja w stopce"><a href="#services" data-i18n="navServices">Rytuały</a><a href="#gallery" data-i18n="navGallery">Przestrzeń</a><a href="#booking" data-i18n="footerBooking">Rezerwacja</a></nav><p class="copyright">© <span id="year"></span> TISZA. <span data-i18n="footerDemo">Projekt demonstracyjny.</span></p></div>
+    </div>
+  </footer>
+
+  <button class="back-to-top glass tone-dark" type="button" data-i18n-attrs='{"aria-label":"backToTopAria"}' aria-label="Powrót na górę">↑</button>
+
+  <script>
+    window.siteTranslations = {
+      pl: {
+        pageTitle: "TISZA — kameralna przestrzeń masażu we Wrocławiu",
+        metaDescription: "TISZA — kameralna przestrzeń masażu we Wrocławiu. Osobiste rytuały, terapeutyczny dotyk i czas należący tylko do Ciebie.",
+        ogTitle: "TISZA — przestrzeń uważnego dotyku",
+        ogDescription: "Rytuały masażu, po których ciało przypomina sobie, jak to jest być lekkim.",
+        skipLink: "Przejdź do głównej treści",
+        brandHome: "TISZA — strona główna",
+        navAria: "Nawigacja główna",
+        navAbout: "O nas",
+        navServices: "Rytuały",
+        navProcess: "Jak to działa",
+        navGallery: "Przestrzeń",
+        navReviews: "Opinie",
+        langSelectAria: "Język strony",
+        ctaBook: "Zarezerwuj",
+        menuOpen: "Otwórz menu",
+        menuClose: "Zamknij menu",
+        mobileNavAria: "Nawigacja mobilna",
+        ctaBookFull: "Zarezerwuj sesję",
+        heroH1: "TISZA — kameralna przestrzeń masażu we Wrocławiu",
+        heroEyebrow: "Kameralna przestrzeń masażu · Wrocław",
+        breathIn: "Wdech",
+        breathOut: "Wydech",
+        heroDockLine: "Wolniej. Głębiej. Do siebie.",
+        heroSubtitle: "Osobiste rytuały dotyku, które przywracają lekkość, spokój i poczucie obecności we własnym ciele.",
+        ctaChooseTime: "Wybierz swój czas",
+        ctaExplore: "Poznaj rytuały",
+        aboutEyebrow: "Filozofia TISZY",
+        aboutTitle: "Nie tylko masaż.<br>Miejsce, gdzie Cię słyszą.",
+        aboutLead: "Przed każdą sesją pytamy nie tylko „gdzie boli”, ale też „jak się dziś czujesz”. Tak powstaje rytuał dopasowany do Twojego tempa, ciała i stanu w danym dniu.",
+        statsAria: "Nasze doświadczenie w liczbach",
+        statYears: "lat praktyki",
+        statSessions: "przeprowadzonych sesji",
+        statReturn: "gości wraca",
+        statRating: "średnia ocena",
+        aboutCaption: "Miejsce, w którym nie trzeba się spieszyć",
+        aboutImgAlt: "Jasny gabinet masażu TISZA z naturalnym drewnem i zielenią",
+        servicesEyebrow: "Rytuały masażu",
+        servicesTitle: "Wybierz, jak chcesz się poczuć.",
+        servicesIntro: "Każdy rytuał dopasowujemy do Twoich potrzeb — od siły nacisku po aromat olejku i muzykę.",
+        svc0Name: "Cicha fala",
+        svc0Desc: "Delikatny masaż całego ciała dla głębokiego relaksu i lepszego snu.",
+        dur60: "60 min",
+        svc1Name: "Głębia",
+        svc1Desc: "Powolna praca z napiętymi mięśniami, przywracająca ruchomość i lekkość.",
+        dur75: "75 min",
+        svc2Name: "Plecy i szyja",
+        svc2Desc: "Skoncentrowany rytuał dla osób, które dużo siedzą, myślą i noszą napięcie w barkach.",
+        dur45: "45 min",
+        svc3Name: "Rytuał kamienny",
+        svc3Desc: "Ciepłe kamienie, aromaterapia i masaż całego ciała — pełny reset.",
+        dur90: "90 min",
+        servicesVisualCaption: "Wybierz rytuał  ↗",
+        processEyebrow: "Twój czas dla siebie",
+        processTitle: "Od zgłoszenia do poczucia lekkości.",
+        processIntro: "Bez pośpiechu i niezręcznych sytuacji. Zadbamy o szczegóły, byś mógł/mogła po prostu przyjść i odetchnąć.",
+        step1Title: "Zostawiasz zgłoszenie",
+        step1Desc: "Wybierz rytuał lub po prostu opisz, jak się czujesz.",
+        step2Title: "Ustalamy termin",
+        step2Desc: "Nasz recepcjonista skontaktuje się z Tobą i potwierdzi wizytę.",
+        step3Title: "Dopasowujemy sesję",
+        step3Desc: "Terapeuta doprecyzuje Twoje potrzeby, komfort i preferowaną intensywność.",
+        step4Title: "Wracasz do siebie",
+        step4Desc: "Po rytuale zostawiamy czas na herbatę i spokojny powrót.",
+        galleryEyebrow: "Nasza przestrzeń",
+        galleryTitle: "Światło. Ciepło. Prywatność.",
+        galleryIntro: "Osobny gabinet, naturalne materiały i żadnego zbędnego dźwięku.",
+        galleryImg1Alt: "Przestronny gabinet masażu w ciepłych naturalnych odcieniach",
+        galleryCap1: "Sala rytuałów",
+        galleryImg2Alt: "Gabinet masażu z naturalnym światłem dziennym",
+        galleryCap2: "Poranne światło",
+        galleryImg3Alt: "Dwa łóżka do masażu w kameralnej przestrzeni wellness",
+        galleryCap3: "Rytuał w parze",
+        reviewsEyebrow: "Słowa naszych gości",
+        reviewsTitle: "Po TISZY.",
+        reviewsSliderAria: "Nawigacja opiniami",
+        prevReview: "Poprzednia opinia",
+        nextReview: "Następna opinia",
+        ratingAria: "5 z 5 gwiazdek",
+        review1: "„Pierwszy raz od dawna poczułam, że nigdzie się nie spieszę. Bardzo uważny terapeuta i niesamowity spokój w każdym detalu”.",
+        review1Author: "Anna · rytuał „Cicha fala”",
+        review2: "„Przyszedłem ze spiętą szyją po ciężkim tygodniu pracy. Wyszedłem z uczuciem, jakbym urósł o kilka centymetrów”.",
+        review2Author: "Maksym · „Plecy i szyja”",
+        review3: "„Tutaj nikt nie mówi niepotrzebnie. Od wejścia po herbatę po masażu — wszystko delikatne, piękne i naprawdę o Tobie”.",
+        review3Author: "Sofia · rytuał „Głębia”",
+        bookingEyebrow: "Rezerwacja sesji",
+        bookingTitle: "Podaruj sobie godzinę ciszy.",
+        bookingIntro: "Zostaw zgłoszenie — zadzwonimy, pomożemy wybrać rytuał i znajdziemy dogodny termin.",
+        labelName: "Imię *",
+        labelPhone: "Telefon *",
+        phonePlaceholder: "+48 ___ ___ ___",
+        labelService: "Rytuał *",
+        optChoose: "Wybierz rytuał",
+        opt0: "Cicha fala · 60 min",
+        opt1: "Głębia · 75 min",
+        opt2: "Plecy i szyja · 45 min",
+        opt3: "Rytuał kamienny · 90 min",
+        optAdvice: "Potrzebuję porady",
+        labelDate: "Preferowana data *",
+        labelTime: "Preferowana godzina *",
+        optChooseTime: "Wybierz godzinę",
+        labelComment: "Komentarz",
+        commentPlaceholder: "Napisz, co Cię teraz niepokoi lub co warto wziąć pod uwagę",
+        formNote: "Klikając przycisk, wyrażasz zgodę na przetwarzanie danych kontaktowych w celu ustalenia rezerwacji.",
+        submitBtn: "Wyślij zgłoszenie",
+        successMsg: "Demo: dane zostały zweryfikowane, ale zgłoszenie nie zostało wysłane.",
+        footerNavAria: "Nawigacja w stopce",
+        footerBooking: "Rezerwacja",
+        footerDemo: "Projekt demonstracyjny.",
+        backToTopAria: "Powrót na górę",
+        darkThemeLabel: "Ciemny motyw",
+        lightThemeLabel: "Jasny motyw",
+        errName: "Podaj proszę swoje imię.",
+        errPhone: "Podaj poprawny numer telefonu.",
+        errService: "Wybierz rytuał lub opcję „Potrzebuję porady”.",
+        errDate: "Wybierz dzisiejszą lub przyszłą datę.",
+        errTime: "Wybierz dogodny przedział czasowy."
+      },
+      uk: {
+        pageTitle: "ТИША — преміальний масажний простір у Вроцлаві",
+        metaDescription: "ТИША — камерний масажний простір у Вроцлаві. Персональні ритуали, терапевтичний дотик і час, що належить тільки вам.",
+        ogTitle: "ТИША — простір уважного дотику",
+        ogDescription: "Масажні ритуали, після яких тіло згадує, як це — бути легким.",
+        skipLink: "Перейти до основного вмісту",
+        brandHome: "ТИША — на головну",
+        navAria: "Головна навігація",
+        navAbout: "Про нас",
+        navServices: "Ритуали",
+        navProcess: "Як це працює",
+        navGallery: "Простір",
+        navReviews: "Відгуки",
+        langSelectAria: "Мова сайту",
+        ctaBook: "Записатися",
+        menuOpen: "Відкрити меню",
+        menuClose: "Закрити меню",
+        mobileNavAria: "Мобільна навігація",
+        ctaBookFull: "Записатися на сеанс",
+        heroH1: "ТИША — преміальний масажний простір у Вроцлаві",
+        heroEyebrow: "Камерний масажний простір · Вроцлав",
+        breathIn: "Вдих",
+        breathOut: "Видих",
+        heroDockLine: "Повільніше. Глибше. До себе.",
+        heroSubtitle: "Персональні ритуали дотику, що повертають легкість, спокій і відчуття присутності у власному тілі.",
+        ctaChooseTime: "Обрати свій час",
+        ctaExplore: "Дослідити ритуали",
+        aboutEyebrow: "Філософія ТИШІ",
+        aboutTitle: "Не просто масаж.<br>Місце, де вас чують.",
+        aboutLead: "Перед кожним сеансом ми запитуємо не лише «де болить», а й «як ви себе почуваєте». Так народжується ритуал, що відповідає саме вашому темпу, тілу й стану сьогодні.",
+        statsAria: "Наш досвід у цифрах",
+        statYears: "років практики",
+        statSessions: "проведених сеансів",
+        statReturn: "гостей повертаються",
+        statRating: "середня оцінка",
+        aboutCaption: "Простір, де не потрібно поспішати",
+        aboutImgAlt: "Світлий масажний кабінет ТИША з натуральним деревом і зеленню",
+        servicesEyebrow: "Масажні ритуали",
+        servicesTitle: "Оберіть, як хочете себе відчути.",
+        servicesIntro: "Кожен ритуал адаптуємо до вашого запиту — від сили натиску до аромату олії та музики.",
+        svc0Name: "Тиха хвиля",
+        svc0Desc: "М'який масаж усього тіла для глибокого розслаблення та якісного сну.",
+        dur60: "60 хв",
+        svc1Name: "Глибина",
+        svc1Desc: "Повільна робота з напруженими м'язами, що повертає рухливість і легкість.",
+        dur75: "75 хв",
+        svc2Name: "Спина & шия",
+        svc2Desc: "Сфокусований ритуал для тих, хто багато сидить, думає і тримає напругу у плечах.",
+        dur45: "45 хв",
+        svc3Name: "Ритуал каменю",
+        svc3Desc: "Тепле каміння, ароматерапія та масаж усього тіла — повне перезавантаження.",
+        dur90: "90 хв",
+        servicesVisualCaption: "Обрати ритуал  ↗",
+        processEyebrow: "Ваш час для себе",
+        processTitle: "Від заявки — до відчуття легкості.",
+        processIntro: "Без поспіху й незручних сценаріїв. Ми подбаємо про деталі, щоб вам залишилось лише прийти та видихнути.",
+        step1Title: "Залишаєте заявку",
+        step1Desc: "Оберіть ритуал або просто опишіть, як почуваєтесь.",
+        step2Title: "Узгоджуємо час",
+        step2Desc: "Адміністратор зв'яжеться з вами та підтвердить візит.",
+        step3Title: "Налаштовуємо сеанс",
+        step3Desc: "Майстер уточнить ваш запит, комфорт і бажану інтенсивність.",
+        step4Title: "Повертаєтесь до себе",
+        step4Desc: "Після ритуалу залишимо час на чай і спокійне повернення.",
+        galleryEyebrow: "Наш простір",
+        galleryTitle: "Світло. Тепло. Приватність.",
+        galleryIntro: "Окремий кабінет, натуральні матеріали й жодного зайвого звуку.",
+        galleryImg1Alt: "Просторий масажний кабінет у теплих природних відтінках",
+        galleryCap1: "Кімната ритуалів",
+        galleryImg2Alt: "Масажний кабінет із природним денним світлом",
+        galleryCap2: "Ранкове світло",
+        galleryImg3Alt: "Дві масажні кушетки в камерному wellness-просторі",
+        galleryCap3: "Парний ритуал",
+        reviewsEyebrow: "Слова наших гостей",
+        reviewsTitle: "Після ТИШІ.",
+        reviewsSliderAria: "Навігація відгуками",
+        prevReview: "Попередній відгук",
+        nextReview: "Наступний відгук",
+        ratingAria: "5 з 5 зірок",
+        review1: "«Вперше за довгий час я відчула, що нікуди не поспішаю. Дуже уважний майстер і неймовірний спокій у деталях».",
+        review1Author: "Анна · ритуал «Тиха хвиля»",
+        review2: "«Прийшов із затиснутою шиєю після робочого тижня. Вийшов із відчуттям, ніби став на кілька сантиметрів вищим».",
+        review2Author: "Максим · «Спина & шия»",
+        review3: "«Тут не намагаються говорити зайве. Від входу до чаю після масажу — все делікатно, красиво і справді про тебе».",
+        review3Author: "Софія · ритуал «Глибина»",
+        bookingEyebrow: "Запис на сеанс",
+        bookingTitle: "Подаруйте собі годину тиші.",
+        bookingIntro: "Залиште заявку — ми зателефонуємо, допоможемо обрати ритуал і знайдемо зручний час.",
+        labelName: "Ім'я *",
+        labelPhone: "Телефон *",
+        phonePlaceholder: "+48 ___ ___ ___",
+        labelService: "Ритуал *",
+        optChoose: "Оберіть ритуал",
+        opt0: "Тиха хвиля · 60 хв",
+        opt1: "Глибина · 75 хв",
+        opt2: "Спина & шия · 45 хв",
+        opt3: "Ритуал каменю · 90 хв",
+        optAdvice: "Потрібна порада",
+        labelDate: "Бажана дата *",
+        labelTime: "Бажаний час *",
+        optChooseTime: "Оберіть час",
+        labelComment: "Коментар",
+        commentPlaceholder: "Розкажіть, що зараз турбує або що важливо врахувати",
+        formNote: "Натискаючи кнопку, ви погоджуєтесь на обробку контактних даних для зв'язку щодо запису.",
+        submitBtn: "Надіслати заявку",
+        successMsg: "Демо: дані перевірено, але заявку не надіслано.",
+        footerNavAria: "Навігація у футері",
+        footerBooking: "Запис",
+        footerDemo: "Демонстраційний проєкт.",
+        backToTopAria: "Повернутися нагору",
+        darkThemeLabel: "Темна тема",
+        lightThemeLabel: "Світла тема",
+        errName: "Вкажіть, будь ласка, ваше ім'я.",
+        errPhone: "Вкажіть коректний номер телефону.",
+        errService: "Оберіть ритуал або пункт «Потрібна порада».",
+        errDate: "Оберіть сьогоднішню або майбутню дату.",
+        errTime: "Оберіть зручний проміжок часу."
+      },
+      en: {
+        pageTitle: "TISZA — an intimate massage space in Wrocław",
+        metaDescription: "TISZA — an intimate massage space in Wrocław. Personal rituals, therapeutic touch, and time that belongs only to you.",
+        ogTitle: "TISZA — a space of mindful touch",
+        ogDescription: "Massage rituals after which the body remembers what it feels like to be light.",
+        skipLink: "Skip to main content",
+        brandHome: "TISZA — home",
+        navAria: "Main navigation",
+        navAbout: "About us",
+        navServices: "Rituals",
+        navProcess: "How it works",
+        navGallery: "Space",
+        navReviews: "Reviews",
+        langSelectAria: "Site language",
+        ctaBook: "Book now",
+        menuOpen: "Open menu",
+        menuClose: "Close menu",
+        mobileNavAria: "Mobile navigation",
+        ctaBookFull: "Book a session",
+        heroH1: "TISZA — an intimate massage space in Wrocław",
+        heroEyebrow: "Intimate massage space · Wrocław",
+        breathIn: "Inhale",
+        breathOut: "Exhale",
+        heroDockLine: "Slower. Deeper. Back to you.",
+        heroSubtitle: "Personal touch rituals that restore lightness, calm, and a sense of presence in your own body.",
+        ctaChooseTime: "Choose your time",
+        ctaExplore: "Explore rituals",
+        aboutEyebrow: "The TISZA philosophy",
+        aboutTitle: "Not just a massage.<br>A place where you're heard.",
+        aboutLead: "Before every session we ask not only \"where does it hurt\" but also \"how do you feel today.\" That's how a ritual is born that matches your pace, body, and state right now.",
+        statsAria: "Our experience in numbers",
+        statYears: "years of practice",
+        statSessions: "sessions completed",
+        statReturn: "of guests return",
+        statRating: "average rating",
+        aboutCaption: "A space where there's no need to rush",
+        aboutImgAlt: "Bright TISZA massage room with natural wood and greenery",
+        servicesEyebrow: "Massage rituals",
+        servicesTitle: "Choose how you want to feel.",
+        servicesIntro: "We tailor every ritual to your request — from pressure to oil scent and music.",
+        svc0Name: "Silent Wave",
+        svc0Desc: "A gentle full-body massage for deep relaxation and better sleep.",
+        dur60: "60 min",
+        svc1Name: "Depth",
+        svc1Desc: "Slow, focused work on tense muscles that restores mobility and ease.",
+        dur75: "75 min",
+        svc2Name: "Back & Neck",
+        svc2Desc: "A focused ritual for those who sit, think, and carry tension in their shoulders all day.",
+        dur45: "45 min",
+        svc3Name: "Stone Ritual",
+        svc3Desc: "Warm stones, aromatherapy, and full-body massage — a complete reset.",
+        dur90: "90 min",
+        servicesVisualCaption: "Choose a ritual  ↗",
+        processEyebrow: "Your time for yourself",
+        processTitle: "From request to a feeling of lightness.",
+        processIntro: "No rush, no awkward scenarios. We'll handle the details so all you have to do is arrive and breathe out.",
+        step1Title: "You leave a request",
+        step1Desc: "Choose a ritual or just describe how you feel.",
+        step2Title: "We arrange a time",
+        step2Desc: "Our coordinator will contact you and confirm the visit.",
+        step3Title: "We tailor the session",
+        step3Desc: "Your therapist will clarify your needs, comfort, and preferred intensity.",
+        step4Title: "You return to yourself",
+        step4Desc: "After the ritual, we leave time for tea and a calm return.",
+        galleryEyebrow: "Our space",
+        galleryTitle: "Light. Warmth. Privacy.",
+        galleryIntro: "A private room, natural materials, and not a single unnecessary sound.",
+        galleryImg1Alt: "Spacious massage room in warm natural tones",
+        galleryCap1: "Ritual room",
+        galleryImg2Alt: "Massage room with natural daylight",
+        galleryCap2: "Morning light",
+        galleryImg3Alt: "Two massage beds in an intimate wellness space",
+        galleryCap3: "Couples ritual",
+        reviewsEyebrow: "Our guests' words",
+        reviewsTitle: "After TISZA.",
+        reviewsSliderAria: "Reviews navigation",
+        prevReview: "Previous review",
+        nextReview: "Next review",
+        ratingAria: "5 out of 5 stars",
+        review1: "\"For the first time in a long while I felt like I wasn't rushing anywhere. A very attentive therapist and incredible calm in every detail.\"",
+        review1Author: "Anna · \"Silent Wave\" ritual",
+        review2: "\"I came in with a stiff neck after a work week. I left feeling like I'd grown a few centimeters taller.\"",
+        review2Author: "Maksym · \"Back & Neck\"",
+        review3: "\"Here they don't try to say too much. From arrival to tea after the massage — everything is gentle, beautiful, and truly about you.\"",
+        review3Author: "Sofia · \"Depth\" ritual",
+        bookingEyebrow: "Book a session",
+        bookingTitle: "Give yourself an hour of silence.",
+        bookingIntro: "Leave a request — we'll call you, help you choose a ritual, and find a convenient time.",
+        labelName: "Name *",
+        labelPhone: "Phone *",
+        phonePlaceholder: "+48 ___ ___ ___",
+        labelService: "Ritual *",
+        optChoose: "Choose a ritual",
+        opt0: "Silent Wave · 60 min",
+        opt1: "Depth · 75 min",
+        opt2: "Back & Neck · 45 min",
+        opt3: "Stone Ritual · 90 min",
+        optAdvice: "Need advice",
+        labelDate: "Preferred date *",
+        labelTime: "Preferred time *",
+        optChooseTime: "Choose a time",
+        labelComment: "Comment",
+        commentPlaceholder: "Tell us what's on your mind or what's important to consider",
+        formNote: "By clicking the button, you agree to the processing of your contact details for booking purposes.",
+        submitBtn: "Send request",
+        successMsg: "Demo: data validated, but the request was not sent.",
+        footerNavAria: "Footer navigation",
+        footerBooking: "Booking",
+        footerDemo: "Demo project.",
+        backToTopAria: "Back to top",
+        darkThemeLabel: "Dark theme",
+        lightThemeLabel: "Light theme",
+        errName: "Please enter your name.",
+        errPhone: "Please enter a valid phone number.",
+        errService: "Choose a ritual or the \"Need advice\" option.",
+        errDate: "Choose today's date or a future one.",
+        errTime: "Choose a convenient time slot."
+      }
+    };
+
+    (function () {
+      'use strict';
+      var translations = window.siteTranslations;
+      var LANG_KEY = 'tisha-lang';
+      var THEME_KEY = 'tisha-theme';
+      var supportedLangs = ['pl', 'uk', 'en'];
+      var localeMap = { pl: 'pl-PL', uk: 'uk-UA', en: 'en-US' };
+      var currentLang = 'pl';
+
+      try {
+        var savedLang = localStorage.getItem(LANG_KEY);
+        if (supportedLangs.indexOf(savedLang) !== -1) currentLang = savedLang;
+      } catch (e) {}
+
+      window.siteTranslate = function (key) {
+        var dict = translations[currentLang] || translations.pl;
+        if (dict && Object.prototype.hasOwnProperty.call(dict, key)) return dict[key];
+        return (translations.pl && translations.pl[key]) || key;
+      };
+      window.siteLocale = localeMap[currentLang] || 'pl-PL';
+
+      function applyMeta(lang) {
+        var dict = translations[lang];
+        if (!dict) return;
+        if (dict.pageTitle) document.title = dict.pageTitle;
+        var descEl = document.querySelector('meta[name="description"]');
+        if (descEl && dict.metaDescription) descEl.setAttribute('content', dict.metaDescription);
+        var ogTitleEl = document.querySelector('meta[property="og:title"]');
+        if (ogTitleEl && dict.ogTitle) ogTitleEl.setAttribute('content', dict.ogTitle);
+        var ogDescEl = document.querySelector('meta[property="og:description"]');
+        if (ogDescEl && dict.ogDescription) ogDescEl.setAttribute('content', dict.ogDescription);
+      }
+
+      function translatePage(lang) {
+        if (!translations[lang]) lang = 'pl';
+        currentLang = lang;
+        window.siteLocale = localeMap[lang] || 'pl-PL';
+        document.documentElement.lang = lang;
+        var dict = translations[lang];
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          var val = dict[key];
+          if (val == null) return;
+          if (val.indexOf('<') !== -1) el.innerHTML = val;
+          else el.textContent = val;
+        });
+
+        document.querySelectorAll('[data-i18n-attrs]').forEach(function (el) {
+          var map;
+          try { map = JSON.parse(el.getAttribute('data-i18n-attrs')); } catch (e) { return; }
+          Object.keys(map).forEach(function (attr) {
+            var val = dict[map[attr]];
+            if (val != null) el.setAttribute(attr, val);
+          });
+        });
+
+        applyMeta(lang);
+
+        var select = document.querySelector('#languageSelect');
+        if (select && select.value !== lang) select.value = lang;
+
+        try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+        document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
+      }
+      window.siteSetLanguage = translatePage;
+
+      translatePage(currentLang);
+
+      var langSelect = document.querySelector('#languageSelect');
+      if (langSelect) {
+        langSelect.value = currentLang;
+        langSelect.addEventListener('change', function () { translatePage(langSelect.value); });
+      }
+
+      /* Theme toggle: light / dark ("чорна / біла" тема) */
+      var root = document.documentElement;
+      var themeToggle = document.querySelector('#themeToggle');
+      var themeMetaColor = document.querySelector('meta[name="theme-color"]');
+      var colorByTheme = { light: '#edf0e8', dark: '#0c1511' };
+
+      function applyTheme(theme, persist) {
+        root.dataset.theme = theme;
+        if (themeToggle) {
+          var iconSpan = themeToggle.querySelector('span');
+          if (iconSpan) iconSpan.textContent = theme === 'dark' ? '☀' : '☾';
+          themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+          var labelKey = theme === 'dark' ? 'lightThemeLabel' : 'darkThemeLabel';
+          var label = window.siteTranslate(labelKey);
+          themeToggle.setAttribute('aria-label', label);
+          themeToggle.setAttribute('title', label);
+        }
+        if (themeMetaColor) themeMetaColor.setAttribute('content', colorByTheme[theme] || colorByTheme.light);
+        if (persist) { try { localStorage.setItem(THEME_KEY, theme); } catch (e) {} }
+        document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: theme } }));
+      }
+
+      var initialTheme = root.dataset.theme === 'dark' ? 'dark' : 'light';
+      applyTheme(initialTheme, false);
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
+        });
+      }
+
+      document.addEventListener('langchange', function () {
+        if (themeToggle) {
+          var labelKey = root.dataset.theme === 'dark' ? 'lightThemeLabel' : 'darkThemeLabel';
+          var label = window.siteTranslate(labelKey);
+          themeToggle.setAttribute('aria-label', label);
+          themeToggle.setAttribute('title', label);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const root = document.documentElement;
+      const header = document.querySelector('#siteHeader');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.querySelector('#mobileMenu');
+      const backToTop = document.querySelector('.back-to-top');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+      /* Зображення, яких немає, ховаємо — замість них видно скляний градієнт */
+      document.querySelectorAll('img').forEach(img => {
+        const hide = () => { img.style.visibility = 'hidden'; };
+        img.addEventListener('error', hide);
+        if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) hide();
+      });
+
+      /* Навігація: рухома скляна «крапля» під активним пунктом */
+      const nav = document.querySelector('.desktop-nav');
+      const pill = document.querySelector('.nav-pill');
+      const navLinks = [...nav.querySelectorAll('.nav-link')];
+      const pageSections = [...document.querySelectorAll('main section[id]')];
+      let activeLink = null;
+      const placePill = link => {
+        if (!link || !link.offsetWidth) { pill.classList.remove('on'); return; }
+        pill.style.setProperty('--px', link.offsetLeft + 'px');
+        pill.style.setProperty('--pw', link.offsetWidth + 'px');
+        pill.classList.add('on');
+      };
+      navLinks.forEach(link => {
+        link.addEventListener('pointerenter', () => placePill(link));
+        link.addEventListener('focus', () => placePill(link));
+      });
+      nav.addEventListener('pointerleave', () => placePill(activeLink));
+      nav.addEventListener('focusout', () => placePill(activeLink));
+      document.querySelector('#languageSelect').addEventListener('change', () => requestAnimationFrame(() => placePill(activeLink)));
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => placePill(activeLink));
+      window.addEventListener('resize', () => placePill(activeLink));
+
+      /* Шапка: тон скла залежить від секції під нею; активний пункт меню */
+      const toneSections = [...document.querySelectorAll('[data-tone]')].filter(el => el !== header);
+      let ticking = false;
+      const updateHeader = () => {
+        ticking = false;
+        const y = window.scrollY;
+        const dark = root.dataset.theme === 'dark';
+        header.classList.toggle('scrolled', y > 40);
+        backToTop.classList.toggle('show', y > 700);
+
+        let tone = 'dark';
+        if (mobileMenu.classList.contains('open')) {
+          tone = dark ? 'dark' : 'light';
+        } else if (!dark) {
+          const probe = 46;
+          const current = toneSections.find(section => {
+            const rect = section.getBoundingClientRect();
+            return rect.top <= probe && rect.bottom > probe;
+          });
+          tone = current ? current.dataset.tone : 'dark';
+        }
+        if (header.dataset.tone !== tone) header.dataset.tone = tone;
+
+        const line = window.innerHeight * 0.4;
+        const currentSection = pageSections.find(section => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= line && rect.bottom > line;
+        });
+        const next = currentSection ? navLinks.find(link => link.getAttribute('href') === `#${currentSection.id}`) || null : null;
+        if (next !== activeLink) {
+          navLinks.forEach(link => link.classList.toggle('active', link === next));
+          activeLink = next;
+          if (!nav.matches(':hover')) placePill(activeLink);
+        }
+      };
+      const requestUpdate = () => { if (!ticking) { ticking = true; requestAnimationFrame(updateHeader); } };
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      document.addEventListener('themechange', requestUpdate);
+      updateHeader();
+
+      /* Мобільне меню */
+      const closeMenu = () => {
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', window.siteTranslate("menuOpen"));
+        document.body.classList.remove('menu-open');
+        updateHeader();
+      };
+      menuToggle.addEventListener('click', () => {
+        const opening = !mobileMenu.classList.contains('open');
+        mobileMenu.classList.toggle('open', opening);
+        menuToggle.setAttribute('aria-expanded', String(opening));
+        menuToggle.setAttribute('aria-label', opening ? window.siteTranslate("menuClose") : window.siteTranslate("menuOpen"));
+        document.body.classList.toggle('menu-open', opening);
+        updateHeader();
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMenu();
+        if (event.key === 'Tab' && mobileMenu.classList.contains('open')) {
+          const focusable = [document.querySelector('#languageSelect'), document.querySelector('#themeToggle'), menuToggle, ...mobileMenu.querySelectorAll('a')];
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      /* Поява заголовків */
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -5% 0px' });
+      document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+
+      /* Лічильники */
+      const stats = document.querySelector('.stats');
+      const countUp = element => {
+        const target = Number(element.dataset.count);
+        const decimal = element.dataset.decimal === 'true';
+        const duration = reduceMotion ? 1 : 1500;
+        const started = performance.now();
+        const tick = now => {
+          const progress = Math.min((now - started) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const value = target * eased;
+          element.textContent = decimal ? value.toFixed(1) : Math.floor(value).toLocaleString(window.siteLocale || 'pl-PL');
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const counterObserver = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          stats.querySelectorAll('[data-count]').forEach(countUp);
+          counterObserver.disconnect();
+        }
+      }, { threshold: 0.35 });
+      counterObserver.observe(stats);
+
+      /* Ритуали */
+      const serviceItems = [...document.querySelectorAll('.service-item')];
+      const serviceImages = [...document.querySelectorAll('.service-visual img')];
+      serviceItems.forEach((item, index) => {
+        const activate = () => {
+          serviceItems.forEach(entry => entry.classList.remove('active'));
+          serviceImages.forEach(image => image.classList.remove('active'));
+          item.classList.add('active');
+          serviceImages[index].classList.add('active');
+        };
+        item.addEventListener('mouseenter', activate);
+        item.addEventListener('focus', activate);
+        item.addEventListener('click', () => {
+          document.querySelector('#service').selectedIndex = index + 1;
+        });
+      });
+
+      /* Відгуки */
+      const reviewTrack = document.querySelector('#reviewTrack');
+      document.querySelectorAll('[data-slide]').forEach(button => {
+        button.addEventListener('click', () => {
+          const card = reviewTrack.querySelector('.review');
+          const distance = card.getBoundingClientRect().width + 14;
+          reviewTrack.scrollBy({ left: button.dataset.slide === 'next' ? distance : -distance, behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+      });
+
+      /* Світло, що біжить за курсором по склу */
+      if (finePointer) {
+        document.addEventListener('pointermove', event => {
+          const glass = event.target.closest && event.target.closest('.glass');
+          if (!glass) return;
+          const rect = glass.getBoundingClientRect();
+          glass.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+          glass.style.setProperty('--my', `${event.clientY - rect.top}px`);
+        }, { passive: true });
+      }
+
+      if (!reduceMotion && finePointer) {
+        document.querySelectorAll('.js-magnetic').forEach(button => {
+          button.addEventListener('pointermove', event => {
+            const rect = button.getBoundingClientRect();
+            const x = (event.clientX - rect.left - rect.width / 2) * 0.12;
+            const y = (event.clientY - rect.top - rect.height / 2) * 0.18;
+            button.style.transform = `translate(${x}px, ${y}px)`;
+          });
+          button.addEventListener('pointerleave', () => { button.style.transform = ''; });
+        });
+
+        const heroImage = document.querySelector('.hero-media img');
+        if (heroImage) {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY < window.innerHeight) heroImage.style.translate = `0 ${window.scrollY * 0.08}px`;
+          }, { passive: true });
+        }
+      }
+
+      /* Форма */
+      const form = document.querySelector('#bookingForm');
+      const success = document.querySelector('#formSuccess');
+      const dateInput = document.querySelector('#date');
+      const today = new Date();
+      const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+      dateInput.min = localToday;
+
+      const validators = {
+        name: value => value.trim().length >= 2 ? '' : window.siteTranslate("errName"),
+        phone: value => value.replace(/\D/g, '').length >= 10 ? '' : window.siteTranslate("errPhone"),
+        service: value => value ? '' : window.siteTranslate("errService"),
+        date: value => value && value >= localToday ? '' : window.siteTranslate("errDate"),
+        time: value => value ? '' : window.siteTranslate("errTime")
+      };
+
+      const validateField = field => {
+        const message = validators[field.name](field.value);
+        const error = document.querySelector(`#${field.name}Error`);
+        field.setAttribute('aria-invalid', String(Boolean(message)));
+        if (message) field.setAttribute('aria-describedby', error.id);
+        else field.removeAttribute('aria-describedby');
+        delete error.dataset.source;
+        error.textContent = message;
+        return !message;
+      };
+
+      Object.keys(validators).forEach(name => {
+        const field = form.elements[name];
+        field.addEventListener('blur', () => validateField(field));
+        field.addEventListener('input', () => {
+          if (field.getAttribute('aria-invalid') === 'true') validateField(field);
+          success.classList.remove('show');
+        });
+      });
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const fields = Object.keys(validators).map(name => form.elements[name]);
+        const valid = fields.map(validateField).every(Boolean);
+        if (!valid) {
+          fields.find(field => field.getAttribute('aria-invalid') === 'true').focus();
+          return;
+        }
+        form.reset();
+        success.classList.add('show');
+        fields.forEach(field => field.removeAttribute('aria-invalid'));
+      });
+
+      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+      document.querySelector('#year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
